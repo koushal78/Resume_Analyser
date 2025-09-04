@@ -16,8 +16,8 @@ dotenv.config();
 const app =  express();
 
 app.use(express.json());
-app.use("/tmp", express.static(path.join(process.cwd(), "tmp")));
-console.log("VERCEL_AI_API_KEY:", process.env.VERCEL_AI_API_KEY?.slice(0, 15));
+
+
 const PORT  =  process.env.PORT || 5000
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
