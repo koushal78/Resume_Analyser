@@ -15,7 +15,7 @@ const useSignup = () => {
     const signup = async ({ email, password, userName }: { email: string; password: string; userName: string }) => {
         setLoading(true)
         try {
-            const res = await axios.post("/api/auth/signup", {
+            const res = await axios.post("https://resume-analyser-0hmh.onrender.com/api/auth/signup", {
                 email, password, userName
             }, {
                 headers: { "Content-Type": "application/json" },
