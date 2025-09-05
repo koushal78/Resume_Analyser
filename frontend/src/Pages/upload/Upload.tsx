@@ -16,7 +16,7 @@ const Upload = () => {
   const navigate = useNavigate();
 
   const [selectedFile,setSelectedFile] = useState<File | null>(null)
-const [image, setImage] = useState("");
+  
 const{loading,analyse} = useAnalyse();
 
   const handleChange = (e:any) =>{
@@ -59,7 +59,7 @@ const{loading,analyse} = useAnalyse();
       return;
     }
 
-    setImage(PdfImage);
+   
     
     await analyse(formData);
     
