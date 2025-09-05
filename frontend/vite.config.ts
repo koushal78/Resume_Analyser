@@ -12,15 +12,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://resume-analyser-0hmh.onrender.com",
-        changeOrigin: true,
-        secure: false,
-      }
-    }
-  },
+ 
   optimizeDeps: {
     include: ['pdfjs-dist']
   },
