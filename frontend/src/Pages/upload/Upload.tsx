@@ -53,17 +53,17 @@ const{loading,analyse} = useAnalyse();
     
     
     
-    const image =  await convertPdfToImage(selectedFile)
-    if(!image){
+    const PdfImage =  await convertPdfToImage(selectedFile)
+    if(!PdfImage){
       toast.error("Fail to convert the pdf to image")
       return;
     }
 
-    setImage(image);
+    setImage(PdfImage);
     
     await analyse(formData);
     
-     navigate('/Analyse', { state: { image } });
+     navigate('/Analyse', { state: { image:PdfImage } });
 
     
 
