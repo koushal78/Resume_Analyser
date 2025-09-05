@@ -10,7 +10,7 @@ const useAnalyse = ()=>{
     const analyse = async(formData:FormData)=>{
         setLoading(true)
        try {
-         const res = await axios.post("https://resume-prompt-backend.onrender.com/analyze",formData) ;
+         const res = await axios.post("https://resume-prompt-backend.onrender.com/analyze",formData,{ withCredentials: true } ) ;
           console.log("form data ->",res.data.feedback.interface_Feedback);
           setFeedback(res.data.feedback.interface_Feedback);
           
