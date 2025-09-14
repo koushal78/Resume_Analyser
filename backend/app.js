@@ -18,7 +18,7 @@ const app =  express();
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://resume-analyser-frontend-orqc.onrender.com",
+  origin:[ "https://resume-analyser-frontend-orqc.onrender.com"],
   credentials: true
 }));
 

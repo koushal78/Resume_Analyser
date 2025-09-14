@@ -1,19 +1,65 @@
 import { fromPath } from "pdf2pic";
+import ResumeFeedback from "../model/feedback.js";
 
-export const dropResume = async (req, res) => {
+export const saveFeedback = async (req, res) => {
   try {
-    const pdfPath = req.file.path; // assuming multer
-    const pdf2pic = fromPath(pdfPath, { format: "png", width: 600 });
+  const {userId,feedback,resumePath} = req.body;
 
-    const result = await pdf2pic(1); // first page
+  const count = await ResumeFeedback.countDocuments({userId});
+  if(count>=6){
+    const oldest = await ResumeFeedback.findOne({userId}).sort({createdAt:1});
+    if(oldest) await ResumeFeedback.findByIdAndDelete(oldest._id)
+  }
 
-    // ✅ Send only once
-    res.json({
-      pages: 1,
-      images: [result.base64]  // already "data:image/png;base64,..."
-    });
+  const newFeedback = await ResumeFeedback.create({
+    userId,
+    feedback,
+    resumePath,
+  });
+  res.status(201).json(newFeedback);
   } catch (error) {
     console.error("dropResume error:", error);
     res.status(500).json({ error: error.message });
   }
 };
+
+
+export const getAllFeedback = async (req,res)=>{
+  try {
+    const{userId} = req.params;
+    const feedback =  await ResumeFeedback.find({userId}).sort({createdAt:-1});
+    if(feedback.length == 0)return res.status(200).json({message:"no feedback is available  "})
+    res.json(feedback);
+  } catch (error) {
+    console.log("error in the getallfeedback",error.message)
+    res.status(500).json({message:error.message});
+    
+  }
+}
+
+export const getFeedbackById = async (req,res)=>{
+  try {
+    const feedback = await ResumeFeedback.findById(req.params.id);
+    if(!feedback)return res.status(404).json({message:"Feedback not found"})
+      res.json(feedback)
+  } catch (error) {
+    console.log("error in the get one feedback controller",error.message);
+    res.status(500).json({success:false,message:error.message})
+    
+  }
+}
+
+
+export const deleteFeedback = async(req,res)=>{
+  try {
+    const feedback = await ResumeFeedback.findByIdAndDelete(req.params.id);
+    if(!feedback) return res.status(404).json({success:false,messgae:"no feedback found"});
+    res.json({success:true,message:"feedback deleted successfully"})
+
+    
+  } catch (error) {
+    console.log("error in the delete feedback controller ",error.message);
+    res.status(500).json({success:false,message:error.message});
+    
+  }
+}

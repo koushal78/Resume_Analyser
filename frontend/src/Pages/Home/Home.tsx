@@ -1,4 +1,8 @@
 
+import { useAuthContext } from "@/context/AuthContext";
+import useFeedback from "@/hooks/usefeedback";
+
+import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdGitCompare } from "react-icons/io";
 import { MdInsights } from "react-icons/md";
@@ -13,6 +17,25 @@ type Feature = {
 }
 
 const Home = () => {
+
+
+  const{loading,feedbacks,getAllFeedback} = useFeedback();
+
+  const{user} = useAuthContext()
+  const userId = user?._id
+
+  useEffect(()=>{
+
+ if (!user?._id) return;
+    getAllFeedback(userId)
+
+  },[userId])
+
+if(loading) return <p className="text-white">Loading feedbacks ....</p>
+
+  
+
+
    const features:Feature[] = [
     {
       icon: <MdInsights />,
@@ -76,15 +99,15 @@ const Home = () => {
         key={idx}
         className="bg-gradient-to-br from-gray-900 to-gray-800 text-white border border-gray-700 shadow-lg rounded-2xl flex flex-col items-center text-center px-6 py-10 w-full max-w-[320px] hover:scale-105 hover:shadow-blue-500/40 transition-transform duration-300"
       >
-        {/* Icon */}
+      
         <div className="text-blue-400 text-5xl mb-4">{f.icon}</div>
 
-        {/* Title */}
+        
         <h3 className="text-xl font-semibold text-blue-200 mb-2">
           {f.title}
         </h3>
 
-        {/* Description */}
+        
         <p className="text-sm text-gray-300 leading-relaxed">
           {f.desc}
         </p>
@@ -98,6 +121,33 @@ const Home = () => {
       </section>
 
       <section className="min-h-screen ">
+
+        <ul>
+
+     {
+  feedbacks && feedbacks.length > 0 ? (
+    feedbacks.map((e, idx) => (
+      <li className="text-white" key={idx}>
+      <img src={e.resumePath} alt="Resume_Image" />
+      </li>
+    ))
+  ) : (
+    <div className="w-full flex flex-col items-center gap-2">
+      <p className=" text-2xl text-gray-600 font-semibold">No feedback </p>
+      <button className="text-white bg-blue-700 rounded-md px-2 py-2 text-xl font-semibold hover:bg-blue-800 hover:shadow-2xl shadow-blue-300 w-fit ">
+          <Link to={'/upload'}>
+           Upload Resume
+          </Link>
+         
+          
+          </button>
+
+    </div>
+  )
+}
+
+
+        </ul>
 
       </section>
       
