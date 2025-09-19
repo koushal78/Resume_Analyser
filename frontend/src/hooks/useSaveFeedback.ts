@@ -32,7 +32,7 @@ const useSaveFeedback = () => {
         throw new Error("Error in the savefeedback hook: No data returned");
       }
 
-      console.log("Feedback saved:", data);
+      console.log("Feedback saved from :", data);
       return data;
     } catch (error: any) {
       console.error("Error in saving feedback:", error.message);

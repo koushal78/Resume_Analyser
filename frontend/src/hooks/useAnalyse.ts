@@ -18,22 +18,24 @@ const useAnalyse = ()=>{
     const navigate = useNavigate()
 
     const analyse = async(formData:FormData)=>{
-        setLoading(true)
-       try {
+      try {
+         setLoading(true)
          const res = await axios.post("https://resume-prompt-backend.onrender.com/analyze",formData,{ withCredentials: false } ) ;
 
        
          const feedback =  res.data.feedback.interface_Feedback;
-         const imgType = res.data.preview_url
+         const resumePath = res.data.preview_url
          console.log(res.data.preview_url)
-         console.log(typeof imgType);
+         console.log(typeof resumePath);
         
           
-           setImageURL(res.data.preview_url);
+           setImageURL(resumePath);
            console.log(imageURL)
+           console.log({ userId, feedback, resumePath });
           
           setFeedback(res.data.feedback.interface_Feedback);
-          await save({userId,feedback,resumePath:res.data.preview_url})
+          await save({userId,feedback,resumePath})
+
           
           toast.success("Analyses suceessfully complete");
           navigate('/Analyse', { state: { imageURL: res.data.preview_url } });
