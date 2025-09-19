@@ -3,23 +3,31 @@ import ResumeFeedback from "../model/feedback.js";
 
 export const saveFeedback = async (req, res) => {
   try {
-  const {userId,feedback,resumePath} = req.body;
+    const { userId, feedback, resumePath } = req.body;
 
-  const count = await ResumeFeedback.countDocuments({userId});
-  if(count>=6){
-    const oldest = await ResumeFeedback.findOne({userId}).sort({createdAt:1});
-    if(oldest) await ResumeFeedback.findByIdAndDelete(oldest._id)
-  }
+    if (!userId || !feedback || !resumePath) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
 
-  const newFeedback = await ResumeFeedback.create({
-    userId,
-    feedback,
-    resumePath,
-  });
-  console.log(newFeedback)
-  res.status(201).json(newFeedback);
+    
+    const count = await ResumeFeedback.countDocuments({ userId });
+    if (count >= 6) {
+      const oldest = await ResumeFeedback.findOne({ userId }).sort({ createdAt: 1 });
+      if (oldest) {
+        await ResumeFeedback.findByIdAndDelete(oldest._id);
+      }
+    }
+
+    const newFeedback = await ResumeFeedback.create({
+      userId,
+      feedback,
+      resumePath,
+    });
+
+    console.log("Feedback saved:", newFeedback);
+    res.status(201).json(newFeedback);
   } catch (error) {
-    console.error("dropResume error:", error);
+    console.error("saveFeedback error:", error); // ✅ fix log
     res.status(500).json({ error: error.message });
   }
 };
