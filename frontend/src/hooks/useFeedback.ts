@@ -20,7 +20,7 @@ const useFeedback = () => {
     setLoading(true);
     try {
       const res = await axios.get<Feedback[]>(
-        `/api/resume/feedbacks/${userId}`,
+        `https://resume-analyser-0hmh.onrender.com/api/resume/feedbacks/${userId}`,
         { withCredentials: true }
       );
       setFeedbacks(res.data);
