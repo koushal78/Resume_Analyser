@@ -16,6 +16,7 @@ export const saveFeedback = async (req, res) => {
     feedback,
     resumePath,
   });
+  console.log(newFeedback)
   res.status(201).json(newFeedback);
   } catch (error) {
     console.error("dropResume error:", error);

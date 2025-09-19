@@ -1,6 +1,7 @@
 
 import { useAuthContext } from "@/context/AuthContext";
-import useFeedback from "@/hooks/usefeedback";
+import useFeedback from "@/hooks/useFeedback";
+
 
 import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
@@ -22,14 +23,19 @@ const Home = () => {
   const{loading,feedbacks,getAllFeedback} = useFeedback();
 
   const{user} = useAuthContext()
+  console.log(user)
   const userId = user?._id
-
+  
+  
+  console.log(userId)
+  
   useEffect(()=>{
-
- if (!user?._id) return;
+    
+    if (!user?._id) return;
     getAllFeedback(userId)
-
+    
   },[userId])
+  console.log(feedbacks)
 
 if(loading) return <p className="text-white">Loading feedbacks ....</p>
 
@@ -120,15 +126,17 @@ if(loading) return <p className="text-white">Loading feedbacks ....</p>
 
       </section>
 
-      <section className="min-h-screen ">
+      <section className="f-full py-8 ">
+ 
+           <h2 className="text-2xl font-semibold text-gray-300 text-center w-full my-4">Review your old Resume</h2>
 
-        <ul>
+        <ul className="grid md:grid-cols-3 gap-4 place-items-center">
 
      {
   feedbacks && feedbacks.length > 0 ? (
     feedbacks.map((e, idx) => (
       <li className="text-white" key={idx}>
-      <img src={e.resumePath} alt="Resume_Image" />
+      <img src={e.resumePath} alt="Resume_Image" className="h-[300px] rounded-md cursor-pointer" />
       </li>
     ))
   ) : (

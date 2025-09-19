@@ -11,7 +11,7 @@ const useLogout = ()=>{
     const logout = async()=>{
         try {
             setLoading(true);
-         const res =    await axios.post("https://resume-analyser-0hmh.onrender.com/api/auth/logout",{},{withCredentials:true})
+         const res =    await axios.post("/api/auth/logout",{},{withCredentials:true})
             if(res.data.success){
                 setUser(null);
             }

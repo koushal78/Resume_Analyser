@@ -21,9 +21,15 @@ import {
   Star
 } from "lucide-react";
 
+
+
 const Analyse_Page = () => {
-  const location = useLocation();
-  const { image } = location.state || {};
+ 
+
+const location = useLocation();
+const image = location.state?.imageURL;
+
+  
   const { feedback } = useResumeContext();
 
   console.log("feedback of the resume ->", feedback?.overallScore);
@@ -99,6 +105,8 @@ const Analyse_Page = () => {
       </div>
     );
   }
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-blue-950 to-slate-950 px-4 py-6 lg:py-12">
@@ -258,7 +266,7 @@ const Analyse_Page = () => {
                   Upload New Resume
                 </Button>
               </Link>
-             
+
             </div>
           </div>
         </div>

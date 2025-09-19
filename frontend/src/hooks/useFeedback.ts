@@ -14,6 +14,7 @@ const useFeedback = () => {
   const [loading, setLoading] = useState(false);
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
   const [oneFeedback, setOneFeedback] = useState<Feedback | null>(null);
+  
 
   const getAllFeedback = async (userId: string) => {
     setLoading(true);
@@ -23,7 +24,7 @@ const useFeedback = () => {
         { withCredentials: true }
       );
       setFeedbacks(res.data);
-      console.log(res.data)
+      console.log("this is the feedback",res.data)
       return res.data;
     } catch (error: any) {
       console.error("Error fetching feedbacks", error.message);
@@ -37,7 +38,7 @@ const useFeedback = () => {
     setLoading(true);
     try {
       const res = await axios.get<Feedback>(
-        `/api/resume/feedback/${id}`,
+        `https://resume-analyser-0hmh.onrender.com/api/resume/feedback/${id}`,
         { withCredentials: true }
       );
       setOneFeedback(res.data);

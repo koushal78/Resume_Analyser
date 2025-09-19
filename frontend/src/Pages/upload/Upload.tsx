@@ -3,7 +3,7 @@ import { useState } from "react";
 import MyDropzone from "../../component/MyDropzone";
 import useAnalyse from "../../hooks/useAnalyse";
 import toast from "react-hot-toast";
-import { convertPdfToImage} from "../../lib/pdf2img";
+
 
 const Upload = () => {
   const[input,setInput] = useState({
@@ -13,7 +13,7 @@ const Upload = () => {
 
   })
 
-  const navigate = useNavigate();
+
 
   const [selectedFile,setSelectedFile] = useState<File | null>(null)
   
@@ -52,24 +52,19 @@ const{loading,analyse} = useAnalyse();
     formData.append('file',selectedFile)
     
     
-    
-    const PdfImage =  await convertPdfToImage(selectedFile)
-    if(!PdfImage){
-      toast.error("Fail to convert the pdf to image")
-      return;
-    }
-
+   
    
     
     await analyse(formData);
     
-     navigate('/Analyse', { state: { image:PdfImage } });
+     
 
     
 
     }
 
 
+    
 
 
   
