@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useState } from "react";
 import MyDropzone from "../../component/MyDropzone";
 import useAnalyse from "../../hooks/useAnalyse";
-import toast from "react-hot-toast";
 
 
 const Upload = () => {
@@ -56,6 +55,8 @@ const{loading,analyse} = useAnalyse();
    
     
     await analyse(formData);
+
+    
     
      
 
