@@ -1,4 +1,4 @@
-import { fromPath } from "pdf2pic";
+
 import ResumeFeedback from "../model/feedback.js";
 
 export const saveFeedback = async (req, res) => {

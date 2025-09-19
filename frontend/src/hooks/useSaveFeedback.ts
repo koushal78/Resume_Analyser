@@ -20,7 +20,10 @@ const useSaveFeedback = () => {
       const res = await axios.post(
         `https://resume-analyser-0hmh.onrender.com/api/resume/savefeedback`,
         { userId, feedback, resumePath },
-        { withCredentials: true }
+       {
+    headers: { "Content-Type": "application/json" }, 
+    withCredentials: true,
+  }
       );
 
       const data = res.data;
