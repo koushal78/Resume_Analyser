@@ -18,7 +18,8 @@ const app =  express();
 app.use(express.json());
 
 app.use(cors({
-  origin:[ "https://resume-analyser-frontend-orqc.onrender.com"],
+  origin: ["https://resume-analyser-frontend-orqc.onrender.com"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
@@ -27,8 +28,7 @@ const PORT  =  process.env.PORT || 8000
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
-app.use(express.json({ limit: "5mb" }));  
-app.use(express.urlencoded({ limit: "5mb", extended: true }));
+
 
 
 const URL = process.env.MONGO_URL || null
