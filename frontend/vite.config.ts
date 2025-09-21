@@ -10,7 +10,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
- 
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://resume-analyser-0hmh.onrender.com',
+        changeOrigin: true,
+        secure: true,
+        configure: (proxy, options) => {
+          proxy.on('proxyReq', (proxyReq, req, res) => {
+            console.log('Proxying request:', req.method, req.url);
+          });
+        }
+      }
+    }},
   optimizeDeps: {
     include: ['pdfjs-dist']
   },

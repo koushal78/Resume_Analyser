@@ -22,22 +22,27 @@ const Home = () => {
 
   const{loading,feedbacks,getAllFeedback} = useFeedback();
 
-  const{user} = useAuthContext()
-  console.log(user)
-  const userId = user?._id
-  
-  
-  console.log(userId)
-  
-  useEffect(()=>{
-    
-    if (!user?._id) return;
-    getAllFeedback(userId)
-    
-  },[userId])
-  console.log(feedbacks)
+const { user, loading: userLoading } = useAuthContext()
 
-if(loading) return <p className="text-white">Loading feedbacks ....</p>
+useEffect(() => {
+  // Only make API call when user loading is complete AND user exists
+  if (!userLoading && user && (user._id || user.id)) {
+    const userId = user._id || user.id;
+    console.log("Making API call with userId:", userId);
+    getAllFeedback(userId);
+  }
+}, [user, userLoading])
+
+if (userLoading) {
+  return (
+    <div className="text-white text-center py-8">
+      <p>Loading...</p>
+    </div>
+  );
+}
+
+// Keep the existing loading check:
+if (loading) return <p className="text-white">Loading feedbacks ....</p>
 
   
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react";
 import MyDropzone from "../../component/MyDropzone";
 import useAnalyse from "../../hooks/useAnalyse";
+import { useAuthContext } from "@/context/AuthContext";
 
 
 const Upload = () => {
@@ -11,6 +12,18 @@ const Upload = () => {
     description:"",
 
   })
+
+
+
+
+  const {user} =  useAuthContext()
+
+  if(!user){
+    alert("there is no user ");
+  }
+  else{
+    alert(`user is present ${user.id}  or ${user.email} `)
+  }
 
 
 

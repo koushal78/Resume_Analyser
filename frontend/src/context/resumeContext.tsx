@@ -17,8 +17,13 @@ export const useResumeContext = () => {
 
 export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   const [feedback, setFeedback] = useState<any>(()=>{
-     const stored = localStorage.getItem("resume-feedback");
+    try {
+    const stored = localStorage.getItem("resume-feedback");
     return stored ? JSON.parse(stored) : null;
+  } catch (err) {
+    console.error("Failed to parse feedback from localStorage", err);
+    return null; 
+  }
   });
 
    useEffect(() => {

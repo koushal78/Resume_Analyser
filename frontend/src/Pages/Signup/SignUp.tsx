@@ -2,7 +2,7 @@ import { useState } from "react"
 import useSignup from "../../hooks/useSignup";
 import toast from "react-hot-toast";
 import { User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
@@ -15,6 +15,7 @@ const [input, setInput] = useState({
 });
 
 const{loading,signup} = useSignup();
+const navigate = useNavigate();
 
 const handleSumbit = async(e:any)=>{
     e.preventDefault();
@@ -27,6 +28,8 @@ const handleSumbit = async(e:any)=>{
     password:input.password,
     userName:input.userName,
    });
+
+   navigate("/")
 
 
     console.log(input);

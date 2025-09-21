@@ -27,7 +27,7 @@ const useSignup = () => {
             if (res.data.err) {
                 throw new Error(res.data.err.message)
             }
-            setUser(res.data);
+            setUser(res.data.user);
             toast.success("Successfully Register")
         } catch (error: any) {
             console.log("error in the signup hook", error.message)

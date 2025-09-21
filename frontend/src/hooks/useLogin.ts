@@ -13,7 +13,7 @@ const useLogin = ()=>{
     const login = async ({email,password}:{email:string,password:string})=>{
       try {
         setLoading(true);
-          const res =  await axios.post("https://resume-analyser-0hmh.onrender.com/api/auth/login",{email,password},{
+          const res =  await axios.post("/api/auth/login",{email,password},{
               headers:{"Content-Type":"application/json"},
               withCredentials: true,
           })
@@ -22,7 +22,7 @@ const useLogin = ()=>{
             throw new Error(res.data.err)
 
           }
-          setUser(res.data);
+          setUser(res.data.user);
           toast.success("Login Successfull")
           
       } catch (error:any) {

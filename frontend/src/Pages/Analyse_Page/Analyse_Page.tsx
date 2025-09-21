@@ -266,6 +266,16 @@ const image = location.state?.imageURL;
                   Upload New Resume
                 </Button>
               </Link>
+              <Link to="/" className="flex-1 sm:flex-none">
+                <Button 
+                
+                  size="lg"
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Home
+                </Button>
+              </Link>
 
             </div>
           </div>
