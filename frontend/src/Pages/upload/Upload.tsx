@@ -16,14 +16,8 @@ const Upload = () => {
 
 
 
-  const {user} =  useAuthContext()
 
-  if(!user){
-    alert("there is no user ");
-  }
-  else{
-    alert(`user is present ${user.id}  or ${user.email} `)
-  }
+
 
 
 

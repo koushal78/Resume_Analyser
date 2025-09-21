@@ -26,17 +26,14 @@ const useAnalyse = ()=>{
        
          const feedback =  res.data.feedback.interface_Feedback;
          const resumePath = res.data.preview_url
-         console.log(res.data.preview_url)
-         console.log(typeof resumePath);
+        
         
          
          setImageURL(resumePath);
-         console.log(imageURL)
-           console.log({ userId, feedback, resumePath });
-           
+       
            setFeedback(res.data.feedback.interface_Feedback);
            
-           console.log("this is the user id 2->",userId)
+           
 
           await save({userId,feedback,resumePath})
 
