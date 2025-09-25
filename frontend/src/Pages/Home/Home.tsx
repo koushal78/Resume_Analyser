@@ -41,7 +41,7 @@ if (userLoading) {
   );
 }
 
-// Keep the existing loading check:
+
 if (loading) return <p className="text-white">Loading feedbacks ....</p>
 
   
@@ -135,17 +135,18 @@ if (loading) return <p className="text-white">Loading feedbacks ....</p>
  
            <h2 className="text-2xl font-semibold text-gray-300 text-center w-full my-4">Review your old Resume</h2>
 
-        <ul className="grid md:grid-cols-3 gap-4 place-items-center">
 
      {
-  feedbacks && feedbacks.length > 0 ? (
-    feedbacks.map((e, idx) => (
+       feedbacks && feedbacks.length > 0 ? (
+         <ul className="grid md:grid-cols-3 gap-4 place-items-center ">
+   { feedbacks.map((e, idx) => (
       <li className="text-white" key={idx}>
       <img src={e.resumePath} alt="Resume_Image" className="h-[300px] rounded-md cursor-pointer" />
       </li>
-    ))
+    )) }
+        </ul>
   ) : (
-    <div className="w-full flex flex-col items-center gap-2">
+    <div className="w-full flex flex-col  items-center gap-2">
       <p className=" text-2xl text-gray-600 font-semibold">No feedback </p>
       <button className="text-white bg-blue-700 rounded-md px-2 py-2 text-xl font-semibold hover:bg-blue-800 hover:shadow-2xl shadow-blue-300 w-fit ">
           <Link to={'/upload'}>
@@ -160,7 +161,6 @@ if (loading) return <p className="text-white">Loading feedbacks ....</p>
 }
 
 
-        </ul>
 
       </section>
       

@@ -1,7 +1,7 @@
 import { User } from "lucide-react"
 import { useState } from "react"
 import useLogin from "../../hooks/useLogin"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
 
@@ -50,9 +50,13 @@ const{loading,login} = useLogin();
                 </div>
 
                 <button type="submit" className="border-2 bg-blue-600 rounded-md w-full py-1 cursor-pointer" >
-                  {loading ? <p>loading</p>:<p>login</p>
+                  {loading ? <p>loading...</p>:<p>login</p>
                   }
                 </button>
+
+                <div>
+                  <p> Don't have account <Link to='/signup' className="text-blue-800 hover:border-b-2 pb-1 border-blue-800">SignUp</Link></p>
+                </div>
 
         </form>
       </div>
