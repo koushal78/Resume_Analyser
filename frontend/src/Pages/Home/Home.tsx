@@ -138,7 +138,7 @@ if (loading) return <p className="text-white">Loading feedbacks ....</p>
 
      {
        feedbacks && feedbacks.length > 0 ? (
-         <ul className="grid md:grid-cols-3 gap-4 place-items-center ">
+         <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center ">
    { feedbacks.map((e, idx) => (
       <li className="text-white" key={idx}>
       <img src={e.resumePath} alt="Resume_Image" className="h-[300px] rounded-md cursor-pointer" />

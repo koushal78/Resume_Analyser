@@ -16,7 +16,7 @@ const useAnalyse = ()=>{
     const userId = user._id || user.id;
    
     const navigate = useNavigate()
-    console.log("this is the user id 1->",userId)
+   //  console.log("this is the user id 1->",userId)
     
     const analyse = async(formData:FormData)=>{
        try {
@@ -29,13 +29,13 @@ const useAnalyse = ()=>{
          const resumePath = res.data.preview_url
 
 
-console.log("hole response ->",res)
+// console.log("hole response ->",res)
          
-         console.log("testing 1");
+//          console.log("testing 1");
 
-         console.log(feedback);
-         console.log(resumePath);
-         console.log(userId);
+//          console.log(feedback);
+//          console.log(resumePath);
+//          console.log(userId);
         
         
          

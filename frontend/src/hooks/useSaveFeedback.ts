@@ -18,7 +18,7 @@ const useSaveFeedback = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `/api/resume/savefeedback`,
+        `https://resume-analyser-0hmh.onrender.com/api/resume/savefeedback`,
         { userId, feedback, resumePath },
        {
     headers: { "Content-Type": "application/json" }, 
@@ -32,7 +32,7 @@ const useSaveFeedback = () => {
         throw new Error("Error in the savefeedback hook: No data returned");
       }
 
-      console.log("Feedback saved from :", data);
+      // console.log("Feedback saved from :", data);
       return data;
     } catch (error: any) {
       console.error("Error in saving feedback:", error.message);

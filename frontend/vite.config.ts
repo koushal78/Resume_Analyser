@@ -18,13 +18,5 @@ export default defineConfig({
       include: [/pdfjs-dist/, /node_modules/]
     }
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:8000", // 👈 your backend URL
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+ 
 })

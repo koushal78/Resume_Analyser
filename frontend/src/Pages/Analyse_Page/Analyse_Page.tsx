@@ -32,7 +32,7 @@ const image = location.state?.imageURL;
   
   const { feedback } = useResumeContext();
 
-  console.log("feedback of the resume ->", feedback?.overallScore);
+  // console.log("feedback of the resume ->", feedback?.overallScore);
 
   const getScoreColor = (marks: number) => {
     if (marks >= 80) return "text-blue-400";
