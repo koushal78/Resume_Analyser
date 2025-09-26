@@ -49,10 +49,23 @@ const Navbar = () => {
         
         
         >
+
+            {user ? (
+                <ul className="w-full flex flex-col gap-4  bg-gray-400/15 rounded-md backdrop-blur-lg py-4 items-center shadow-2xl/50 shadow-blue-800  ">
+
+                    <Logout/>
+
+                </ul>
+                
+            
+            ):(
            <ul className="w-full flex flex-col gap-4  bg-gray-400/15 rounded-md backdrop-blur-lg py-4 items-center shadow-2xl/50 shadow-blue-800  ">
            <li> <button className="  border-2 border-white rounded-full py-1 text-lg min-w-[100px] text-blue-400 font-semibold hover:bg-blue-600 hover:text-white duration-300  " ><Link to={'/signup'}>Signup</Link></button> </li>
             <li> <button className="border-2 border-white rounded-full py-1 text-lg min-w-[100px] text-blue-400 font-semibold  hover:bg-blue-600 hover:text-white duration-300   " ><Link to={'/login'}>login</Link></button> </li>
            </ul>
+
+
+            )}
         </div>
     </div>
   )

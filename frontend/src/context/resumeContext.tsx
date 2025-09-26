@@ -19,10 +19,10 @@ export const ResumeProvider = ({ children }: { children: ReactNode }) => {
   const [feedback, setFeedback] = useState<any>(()=>{
     try {
     const stored = localStorage.getItem("resume-feedback");
-    return stored ? JSON.parse(stored) : null;
+    return stored ? JSON.parse(stored) :[] ;
   } catch (err) {
     console.error("Failed to parse feedback from localStorage", err);
-    return null; 
+    return []; 
   }
   });
 

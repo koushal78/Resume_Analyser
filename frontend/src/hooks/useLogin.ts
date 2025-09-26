@@ -13,11 +13,11 @@ const useLogin = ()=>{
     const login = async ({email,password}:{email:string,password:string})=>{
       try {
         setLoading(true);
-          const res =  await axios.post("https://resume-analyser-0hmh.onrender.com/api/auth/login",{email,password},{
+          const res =  await axios.post("/api/auth/login",{email,password},{
               headers:{"Content-Type":"application/json"},
               withCredentials: true,
           })
-          console.log(res.data)
+          console.log(res)
           if(res.data.err){
             throw new Error(res.data.err)
 

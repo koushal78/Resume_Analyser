@@ -21,7 +21,7 @@ const useFeedback = () => {
     setLoading(true);
     try {
       const res = await axios.get<Feedback[]>(
-        `https://resume-analyser-0hmh.onrender.com/api/resume/feedbacks/${userId}`,
+        `/api/resume/feedbacks/${userId}`,
         { withCredentials: true }
       );
       setFeedbacks(res.data);
@@ -39,7 +39,7 @@ const useFeedback = () => {
     setLoading(true);
     try {
       const res = await axios.get<Feedback>(
-        `https://resume-analyser-0hmh.onrender.com/api/resume/feedback/${id}`,
+        `/api/resume/feedback/${id}`,
         { withCredentials: true }
       );
       setOneFeedback(res.data);

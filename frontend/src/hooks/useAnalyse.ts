@@ -24,14 +24,24 @@ const useAnalyse = ()=>{
          const res = await axios.post("https://resume-prompt-backend.onrender.com/analyze",formData,{ withCredentials: false } ) ;
          
        
-         const feedback =  res.data.feedback.interface_Feedback;
+       const feedback = res.data.feedback?.interface_Feedback || res.data.feedback || [];
+
          const resumePath = res.data.preview_url
+
+
+console.log("hole response ->",res)
+         
+         console.log("testing 1");
+
+         console.log(feedback);
+         console.log(resumePath);
+         console.log(userId);
         
         
          
          setImageURL(resumePath);
        
-           setFeedback(res.data.feedback.interface_Feedback);
+           setFeedback(feedback);
            
            
 

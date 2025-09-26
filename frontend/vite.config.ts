@@ -10,7 +10,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
- 
   optimizeDeps: {
     include: ['pdfjs-dist']
   },
@@ -18,5 +17,14 @@ export default defineConfig({
     commonjsOptions: {
       include: [/pdfjs-dist/, /node_modules/]
     }
-  }
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8000", // 👈 your backend URL
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 })

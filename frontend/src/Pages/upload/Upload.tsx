@@ -128,7 +128,7 @@ const{loading,analyse} = useAnalyse();
           <div className="w-full text-center">
 
           <button className="text-white border-2 py-1 rounded-md  hover:bg-blue-800 duration-300 w-fit px-14 font-semibold  " >{
-            loading ? <p>Analyse....</p> : <p>Analyse</p>
+            loading ? <p>Analysing....</p> : <p>Analyse</p>
             
             }</button>
           </div>
