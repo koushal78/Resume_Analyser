@@ -27,15 +27,15 @@ const Navbar = () => {
                 <div className="hidden md:block">
                     {
                         user ? (
-                            <div onClick={()=>setShow(!show)}>
+                            
 
                                 <Logout />
-                            </div>
+                          
 
                         ):
                     (<ul className="flex gap-2 ">
-                        <li> <button className=" primary-btn  " ><Link to={'/signup'} onClick={()=>setShow(!show)}>Signup</Link></button> </li>
-                        <li> <button className="primary-btn" ><Link to={'/login'} onClick={()=>setShow(!show)} >login</Link></button> </li>
+                        <li> <button className=" primary-btn  " ><Link to={'/signup'} >Signup</Link></button> </li>
+                        <li> <button className="primary-btn" ><Link to={'/login'}  >login</Link></button> </li>
                     </ul>)
                     }
                 </div>
