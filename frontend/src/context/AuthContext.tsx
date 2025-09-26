@@ -29,7 +29,7 @@ export const AUthProvider = ({children}:{children:ReactNode})=>{
     useEffect(()=>{
       (async ()=>{
         try {
-          const res  =  await axios.get("/api/auth/me",{withCredentials: true})
+          const res  =  await axios.get("https://resume-analyser-0hmh.onrender.com/api/auth/me",{withCredentials: true})
           setUser(res.data.user)
           
         } catch (err) {
