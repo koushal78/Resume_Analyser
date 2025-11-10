@@ -8,6 +8,7 @@ import Login from "./Pages/login/Login"
 import Upload from "./Pages/upload/Upload"
 import ProtectedRoute from "./component/ProtectedRoute"
 import Analyse_Page from "./Pages/Analyse_Page/Analyse_Page"
+import Profile from "./Pages/Profile/Profile"
 
 
 
@@ -29,7 +30,9 @@ const App = () => {
 <Route path="/signup" element={<SignUp/>}/>
 <Route path="/login" element={<Login/>}/>
 <Route path="/Analyse" element={     <ProtectedRoute><Analyse_Page/></ProtectedRoute>     }/>
-
+<Route path="/Profile" element={ <ProtectedRoute>
+  <Profile/>
+</ProtectedRoute>}/>
       </Routes>
       <Toaster/>
       </div>

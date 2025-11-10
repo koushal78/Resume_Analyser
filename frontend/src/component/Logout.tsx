@@ -10,7 +10,7 @@ const Logout = () => {
     
   return (
     <div>
-        <button  onClick={handleLogout} className="text-white primary-btn" >{loading ? <p>loading...</p> : <p>logout</p>}</button>
+        <p  onClick={handleLogout}  >{loading ? <p>loading...</p> : <p>logout</p>}</p>
     </div>
   )
 }

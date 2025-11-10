@@ -1,11 +1,11 @@
 import { User } from "lucide-react"
 import { useState } from "react"
 import useLogin from "../../hooks/useLogin"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Login = () => {
 
-  const navigate = useNavigate();
+  
 
   const[input,setInput] = useState({
     email:"",
@@ -17,7 +17,7 @@ const{loading,login} = useLogin();
     e.preventDefault();
     await login({email:input.email,password:input.password});
 
-    navigate('/')
+    
 
 
   }

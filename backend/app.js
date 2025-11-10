@@ -7,6 +7,8 @@ import initpassport from "./config/passport.js";
 import session from "express-session";
 import resumeRoute from "./routes/resume.route.js"
 import cors from 'cors'
+import scrapRoute from "./routes/scrap.route.js"
+
 dotenv.config();
 
 
@@ -63,6 +65,7 @@ app.use(passport.session())
 
 app.use("/api/auth",authRouter);
 app.use("/api/resume/",resumeRoute)
+app.use("/api/scrap",scrapRoute)
 
 
 

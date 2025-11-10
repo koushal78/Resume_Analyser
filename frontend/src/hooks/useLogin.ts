@@ -2,12 +2,14 @@ import axios from "axios"
 import { useState } from "react"
 import { useAuthContext } from "../context/AuthContext"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const useLogin = ()=>{
 
     const[loading,setLoading] =  useState(false)
 
     const{setUser} = useAuthContext()
+    const navigate = useNavigate();
 
 
     const login = async ({email,password}:{email:string,password:string})=>{
@@ -24,6 +26,7 @@ const useLogin = ()=>{
           }
           setUser(res.data.user);
           toast.success("Login Successfull")
+          navigate('/')
           
       } catch (error:any) {
 

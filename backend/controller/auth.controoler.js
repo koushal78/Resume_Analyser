@@ -70,7 +70,7 @@ export const signUp = async(req,res)=>{
 export const login = async(req,res)=>{
    
     const user = req.user;
-  res.json({ message: "Logged in", user: { id: user.id, email: user.email, name: user.name } });
+  res.json({ message: "Logged in", user: { id: user.id, email: user.email, userName: user.userName } });
    
 
 }
@@ -91,5 +91,29 @@ export const getMe = (req, res) => {
   res.json({ user: req.user });
 };
 
+
+export const forget = async(req,res)=>{
+   try {
+     const{email,newPassword} = req.body
+ 
+     const existingUser =  await user.findOne({email});
+ if(!existingUser) return res.status(401).json({success:false,message:"Email not found"});
+
+  const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+    existingUser.password =  hashedPassword;
+
+    await existingUser.save();
+
+    return res.status(200).json({success:true,message:"password chnage is successfully"});
+
+   } catch (error) {
+    console.log("error in the forget password controller",error);
+    res.status(500).json({success:false,message:"failed to change the password"})
+    
+   }
+    
+
+}
 
 // in every request broweser send a user id with the request 
