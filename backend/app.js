@@ -22,7 +22,7 @@ const app =  express();
 app.use(
   cors({
     origin: [
-      "https://resume-analyser-frontend-orqc.onrender.com",
+      "https://resume-prompt-backend.onrender.com/api/resume/analyze",
       "http://localhost:5173"
     ],
     credentials: true,

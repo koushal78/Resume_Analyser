@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaBuilding, FaBriefcase, FaFileUpload, FaLinkedin } from "react-icons/fa";
 import { MdDescription, MdAutoAwesome } from "react-icons/md";
 import { HiSparkles } from "react-icons/hi";
@@ -15,6 +15,7 @@ const Upload = () => {
     description: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [scrapingLoading, setScrapingLoading] = useState<boolean>(false);
   
   const { loading, analyse } = useAnalyse();
 
@@ -28,6 +29,55 @@ const Upload = () => {
   const handleFileSelect = (file: File | null) => {
     setSelectedFile(file);
   };
+ 
+  const location = useLocation();
+useEffect(() => {
+  const value = location.state?.myValue;
+  if (value) {
+    setLinkedinUrl(value);
+  }
+}, [location.state?.myValue]);
+  // Function to fetch job details from LinkedIn URL
+  const handleFetchLinkedInJob = async () => {
+    if (!linkedinUrl.trim()) {
+      alert("Please enter a LinkedIn job URL");
+      return;
+    }
+
+    setScrapingLoading(true);
+    try {
+      const response = await fetch("http://localhost:8000/api/scrap/getDetails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: linkedinUrl }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch job details");
+      }
+
+      const data = await response.json();
+      
+      // Update the input state with fetched data
+      setInput({
+        company: data.organization || "",
+        title: data.title || "",
+        description: data.description || "",
+      });
+
+      // Switch to manual tab to show the fetched details
+      setActiveTab("manual");
+      
+      alert("Job details fetched successfully! Review and submit when ready.");
+    } catch (error) {
+      console.error("Error fetching job details:", error);
+      alert("Failed to fetch job details. Please check the URL and try again.");
+    } finally {
+      setScrapingLoading(false);
+    }
+  };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +88,11 @@ const Upload = () => {
     }
 
     if (activeTab === "manual") {
-      
+      // Validation for manual entry
+      if (!input.company.trim() || !input.title.trim() || !input.description.trim()) {
+        alert("Please fill in all job details");
+        return;
+      }
     } else {
       if (!linkedinUrl.trim()) {
         alert("Please enter a LinkedIn job URL");
@@ -211,13 +265,30 @@ const Upload = () => {
                     <label className="block text-sm font-semibold text-gray-300">
                       LinkedIn Job URL
                     </label>
-                    <input
-                      type="url"
-                      value={linkedinUrl}
-                      onChange={(e) => setLinkedinUrl(e.target.value)}
-                      placeholder="https://www.linkedin.com/jobs/view/..."
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="url"
+                        value={linkedinUrl}
+                        onChange={(e) => setLinkedinUrl(e.target.value)}
+                        placeholder="https://www.linkedin.com/jobs/view/..."
+                        className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleFetchLinkedInJob}
+                        disabled={scrapingLoading || !linkedinUrl.trim()}
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed rounded-lg font-semibold transition-all duration-300 whitespace-nowrap"
+                      >
+                        {scrapingLoading ? (
+                          <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            Fetching...
+                          </div>
+                        ) : (
+                          "Fetch Details"
+                        )}
+                      </button>
+                    </div>
                     <p className="text-xs text-gray-500">
                       Copy the job posting URL from LinkedIn
                     </p>
@@ -226,7 +297,7 @@ const Upload = () => {
                   {/* Info Box */}
                   <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                     <p className="text-sm text-blue-300">
-                      <strong>💡 Tip:</strong> Make sure the LinkedIn job posting is public and accessible
+                      <strong>💡 Tip:</strong> Click "Fetch Details" to automatically extract job information, then review and submit
                     </p>
                   </div>
                 </div>

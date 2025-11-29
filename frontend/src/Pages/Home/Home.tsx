@@ -3,7 +3,7 @@ import { FaCheckCircle, FaLinkedin, FaRocket, FaBrain, FaChartLine } from "react
 import { IoMdGitCompare } from "react-icons/io";
 import { MdInsights, MdAutoAwesome } from "react-icons/md";
 import { HiSparkles, HiDocumentText } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFeedback from "@/hooks/useFeedback";
 import { useAuthContext } from "@/context/AuthContext";
 
@@ -37,18 +37,20 @@ const Home: React.FC<HomeProps> = () => {
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
    const{loading,feedbacks,getAllFeedback} = useFeedback();
    const { user,loading: userLoading } = useAuthContext()
+   const navigate = useNavigate()
 
   const handleLinkedInAnalyze = (): void => {
-    if (linkedinUrl.trim()) {
+    linkedinUrl.trim()
       setIsAnalyzing(true);
-      setTimeout(() => setIsAnalyzing(false), 1000);
-    }
+    
+        navigate("/upload", {
+     state: { myValue: linkedinUrl }
+   });
   };
  
 
   useEffect(() => {
 
-  // Only make API call when user loading is complete AND user exists
   
   if (!userLoading && user && (user._id || user.id)) {
     const userId = user._id || user.id;
@@ -56,6 +58,8 @@ const Home: React.FC<HomeProps> = () => {
     getAllFeedback(userId);
   }
 }, [user, userLoading])
+
+
 
 if (userLoading) {
   return (
@@ -208,6 +212,7 @@ if (userLoading) {
                 <button
                   onClick={handleLinkedInAnalyze}
                   disabled={isAnalyzing}
+
                   className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   {isAnalyzing ? (

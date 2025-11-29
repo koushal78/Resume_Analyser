@@ -7,6 +7,8 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 
+
+
 const useAnalyse = ()=>{
     const[loading,setLoading] = useState(false);
     const{setFeedback} = useResumeContext();
@@ -16,6 +18,7 @@ const useAnalyse = ()=>{
     const userId = user._id || user.id;
    
     const navigate = useNavigate()
+
    //  console.log("this is the user id 1->",userId)
     
     const analyse = async(formData:FormData)=>{
