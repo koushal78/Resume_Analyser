@@ -46,7 +46,7 @@ useEffect(() => {
 
     setScrapingLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/api/scrap/getDetails", {
+      const response = await fetch("https://resume-analyser-0hmh.onrender.com/api/scrap/getDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
