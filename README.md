@@ -18,4 +18,54 @@ Features
 
 ⚡ Fast and scalable backend using FastAPI and Uvicorn
 
-🌐 Fully deployed on https://resume-analyser-frontend-orqc.onrender.com/
+## Screenshots
+
+
+![Home Page](https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Screenshot%202025-11-10%20220140.png)
+
+Upload Page
+
+![Home Page](https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Screenshot%202025-11-10%20220213.png)
+
+## Demo
+
+Insert gif or link to demo
+
+<video src="https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Recording%202025-11-10%20221531.mp4" controls width="600"></video>
+
+
+## Deployment
+
+To run frontend  
+
+```bash
+  npm run dev
+```
+
+To run Backend  
+
+```bash
+  npm run dev
+```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+
+
+`MONGO_URL `
+
+`SESSION_SECRET`
+
+
+
+
+`CLOUDINARY_CLOUD_NAME`
+
+`CLOUDINARY_API_KEY`
+
+`CLOUDINARY_API_SECRET`
+
+`NODE_ENV `
