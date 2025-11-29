@@ -1,18 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { IoReorderThreeSharp, IoClose } from "react-icons/io5";
-import { FaUser, FaHistory, FaCog } from "react-icons/fa";
+import {  FaHistory, FaCog } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import Logout from "./Logout";
 
-interface User {
-  _id?: string;
-  id?: string;
-  name?: string;
-  email?: string;
-}
 
 const Navbar = () => {
   const { user } = useAuthContext();

@@ -13,8 +13,10 @@ const useforget = ()=>{
                 headers:{"Content-Type":"application/json"},
               withCredentials:true
           })
+          
   
           toast.success("password reset successfully")
+          return res;
           
       } catch (error:any) {
         console.log("error in the forget password controller",error);
