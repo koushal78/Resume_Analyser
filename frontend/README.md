@@ -1,69 +1,71 @@
-# React + TypeScript + Vite
+# Resume_Analyser
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An intelligent web application that allows users to upload their resumes (PDF or DOCX), get detailed AI-powered feedback, and view a real-time preview of the analyzed resume. Built with React.js, Tailwind CSS, and a FastAPI backend integrated with Gemini AI and Cloudinary for file handling.
 
-Currently, two official plugins are available:
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📄 Upload resumes in PDF format
 
-## Expanding the ESLint configuration
+🤖 AI-generated feedback on resume content, formatting, and clarity
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🖼️ Real-time preview of analyzed resume (via Cloudinary)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+💾 Auto-save feedback linked with user accounts
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+🔐 Authentication system with secure session management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+☁️ Cloud-based file storage (Cloudinary)
+
+⚡ Fast and scalable backend using FastAPI and Uvicorn
+
+## Screenshots
+
+
+![Home Page](https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Screenshot%202025-11-10%20220140.png)
+
+Upload Page
+
+![Home Page](https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Screenshot%202025-11-10%20220213.png)
+
+## Demo
+
+Insert gif or link to demo
+
+<video src="https://raw.githubusercontent.com/koushal78/Resume_Analyser/main/frontend/public/Recording%202025-11-10%20221531.mp4" controls width="600"></video>
+
+
+## Deployment
+
+To run frontend  
+
+```bash
+  npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To run Backend  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+  npm run dev
 ```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+
+
+`MONGO_URL `
+
+`SESSION_SECRET`
+
+
+
+
+`CLOUDINARY_CLOUD_NAME`
+
+`CLOUDINARY_API_KEY`
+
+`CLOUDINARY_API_SECRET`
+
+`NODE_ENV `
